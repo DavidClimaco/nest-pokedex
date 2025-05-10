@@ -15,7 +15,7 @@
 ## Project setup
 
 ```bash
-$ pnpm install
+$ yarn install
 ```
 
 ## Compile and run the project
@@ -59,6 +59,18 @@ yarn start:dev
 8. Reconstruir la base de datos
 ```
 http://localhost:3000/api/v2/seed
+```
+
+# Production Build
+1. Crear el archivo __.env.prod__
+2. Llenar las variables de entorno de prod
+3. Crear la nueva imagen (si el archivo es .env no es necesario el --env-file .env.prod)
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+4. Poner en marcha la imagen cuando ya se ejecuto el comando anterior (si el archivo es .env no es necesario el --env-file .env.prod)
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
 ```
 ## Stack Usado
 * MongoDB
