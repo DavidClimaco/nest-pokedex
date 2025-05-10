@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { PaginationDto } from 'src/common/dto/paginatio.dto';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -23,8 +25,9 @@ export class PokemonController {
   }
 
   @Get()
-  findAll() {
-    return this.pokemonService.findAll();
+  findAll(@Query() queryParameters: PaginationDto) {
+    console.log({ queryParameters });
+    return this.pokemonService.findAll(queryParameters);
   }
 
   @Get(':id') //ID se refiere al termino de búsqueda
